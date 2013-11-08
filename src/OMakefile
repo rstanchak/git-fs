@@ -11,6 +11,7 @@ OCAMLPACKS[] +=
    batteries
    bigarray
    pcre
+   Fuse
 
 #OCAMLFINDFLAGS +=
 
@@ -22,7 +23,7 @@ if $(not $(OCAMLFIND_EXISTS))
 #
 # Include path
 #
-OCAMLINCLUDES += ../deps/ocamlfuse/lib
+# OCAMLINCLUDES += 
 
 #
 # Compile native or byte code? 
@@ -52,8 +53,8 @@ FILES[] =
 PROGRAM = git-fs
 # OCAML_LIBS +=
 # OCAML_CLIBS +=
-OCAML_OTHER_LIBS += Fuse
-OCAML_LIB_FLAGS += -ccopt -L../deps/ocamlfuse/lib
+# OCAML_OTHER_LIBS +=
+# OCAML_LIB_FLAGS += 
 
 .DEFAULT: $(OCamlProgram $(PROGRAM), $(FILES))
 
