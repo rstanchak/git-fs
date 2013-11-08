@@ -849,12 +849,12 @@ let fs_type = "fuse." ^ fs_subtype
 let mtab_lines () =
   BatEnum.filter_map (fun line ->
     match BatString.nsplit line " " with
-    |_::_::_::"/"::mountpoint::_::"-"::an_fs_type::git_dir_quoted::_
+    |git_dir_quoted::mountpoint::an_fs_type::_::_::_
     when an_fs_type = fs_type ->
       (* XXX mountpoint has octal escapes, decode that? *)
       Some (git_dir_quoted, mountpoint)
     |_ -> None
-    ) (BatFile.lines_of "/proc/self/mountinfo")
+    ) (BatFile.lines_of "/proc/self/mounts")
 
 let is_mounted () =
   let lazy fsname = fsname_lazy in
